@@ -1,351 +1,166 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Guide Library</title>
-    <!-- Tailwind CSS CDN for modern free styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; }
-        body[dir="rtl"] { font-family: 'Cairo', 'Noto Nastaliq Urdu', sans-serif; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tech Guideline</title>
+<style>
+:root{--red:#c8102e;--red-dark:#9b0c23;--bg:#f6f6f7;--card:#fff;--text:#222;--muted:#666}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{background:var(--red);color:#fff;padding:14px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+header h1{margin:0;font-size:1.4rem}
+.brand{display:flex;align-items:center;gap:14px}
+.logobox{background:#fff;border-radius:8px;padding:4px 10px;display:flex;align-items:center}
+.logobox img{height:36px;width:auto;display:block}
+.langs button{background:transparent;color:#fff;border:1px solid #fff;padding:6px 12px;margin:0 2px;border-radius:6px;cursor:pointer;font-size:.9rem}
+.langs button.active{background:#fff;color:var(--red);font-weight:700}
+nav{background:var(--red-dark);display:flex;flex-wrap:wrap}
+nav button{flex:1;min-width:120px;background:none;border:0;color:#fff;padding:14px;font-size:1rem;cursor:pointer;border-bottom:4px solid transparent}
+nav button.active{border-bottom-color:#fff;font-weight:700;background:rgba(255,255,255,.1)}
+main{max-width:900px;margin:0 auto;padding:20px}
+section{display:none}section.active{display:block}
+.card{background:var(--card);border-radius:10px;padding:18px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.card h3{margin-top:0;color:var(--red)}
+.video{position:relative;padding-top:56.25%;background:#000;border-radius:8px;overflow:hidden;margin-bottom:12px}
+.video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video.empty{display:flex;align-items:center;justify-content:center;padding:0;height:200px;color:#bbb}
+ol{padding-inline-start:22px}
+input[type=search]{width:100%;padding:12px;font-size:1rem;border:2px solid var(--red);border-radius:8px;margin-bottom:16px}
+.tag{display:inline-block;background:var(--red);color:#fff;font-size:.75rem;padding:2px 8px;border-radius:10px;margin-inline-end:6px}
+.result{cursor:pointer}
+footer{background:var(--red);color:#fff;text-align:center;padding:22px 10px;margin-top:30px}
+.logo{font-size:1.2rem;font-weight:700;letter-spacing:.5px;font-style:italic}
+.logo::before{content:"★ "}
+</style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<body>
 
-    <!-- Header & Language Switcher -->
-    <header class="bg-blue-600 text-white shadow-md">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 id="site-title" class="text-2xl font-bold">⚙️ Technical Guide Hub</h1>
-            <div class="flex items-center gap-2">
-                <span id="lang-label" class="text-sm font-medium">Language:</span>
-                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-blue-700 text-white text-sm rounded px-3 py-1.5 border border-blue-500 focus:outline-none">
-                    <option value="en">English</option>
-                    <option value="ar">العربية (Arabic)</option>
-                    <option value="ur">اردو (Urdu)</option>
-                </select>
-            </div>
-        </div>
-    </header>
+<header>
+  <div class="brand">
+    <span class="logobox"><img src="images/aramex-logo.png" alt="Aramex" onerror="this.parentElement.style.display='none'"></span>
+    <h1 id="siteTitle"></h1>
+  </div>
+  <div class="langs">
+    <button data-lang="en">English</button>
+    <button data-lang="ar">العربية</button>
+    <button data-lang="ur">Roman Urdu</button>
+  </div>
+</header>
+<nav>
+  <button data-tab="infor"></button>
+  <button data-tab="softeon"></button>
+  <button data-tab="search"></button>
+</nav>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
-        
-        <!-- Search Section -->
-        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-            <label id="search-prompt" for="searchInput" class="block text-lg font-semibold mb-2 text-slate-700">Search technical guides (English, Arabic, or Urdu):</label>
-            <div class="relative">
-                <input type="text" id="searchInput" oninput="filterGuides()" placeholder="Type keyword e.g. Infor, Soften, إنفور, سوفتهن..." 
-                    class="w-full pl-4 pr-10 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-base">
-                <span class="absolute right-3 top-3.5 text-slate-400">🔍</span>
-            </div>
-        </div>
+<main>
+  <section id="infor"></section>
+  <section id="softeon"></section>
+  <section id="search">
+    <input type="search" id="q">
+    <div id="results"></div>
+  </section>
+</main>
 
-        <!-- SECTION 1: INFOR -->
-        <div class="mb-10">
-            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
-                <span>📁</span> Infor Guides
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Infor Card 1 -->
-                <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                     data-keywords="infor system guide إنفور نظام">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <!-- Replace the URL below with your own Infor photo link -->
-                        <img src="https://imgbb.com/][img]https://i.ibb.co/v6pKzP0H/Infor.png[/img][/url]">
-                        <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Infor Section</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="font-bold text-lg mb-2 text-slate-800">Infor System Walkthrough</h3>
-                        <p class="text-sm text-slate-600 mb-4 flex-grow">Step-by-step visual documentation for navigating and operating Infor workflows.</p>
-                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer><div class="logo">We make your day to day experience more easy</div></footer>
 
-        <!-- SECTION 2: SOFTEN -->
-        <div class="mb-10">
-            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
-                <span>📁</span> Soften Guides
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Soften Card 1 -->
-                <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                     data-keywords="soften system guide سوفتهن نظام">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <!-- Replace the URL below with your own Soften photo link -->
-                        <img src="https://3abc861f-4cb8-4575-851d-436634ade28d.png" class="w-full h-full object-cover">
-                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Soften Section</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="font-bold text-lg mb-2 text-slate-800">Soften Operation Overview</h3>
-                        <p class="text-sm text-slate-600 mb-4 flex-grow">Photo and video tutorials detailing Soften configuration and troubleshooting procedures.</p>
-                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- No Results Found State -->
-        <div id="noResults" class="hidden text-center py-12 text-slate-500">
-            <p id="no-results-text" class="text-lg">No matching technical guides found. Try searching another keyword.</p>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-sm text-slate-500">
-    <p id="footer-text">Making your day to day experience easier</p>
-    </footer>
-
-    <!-- JavaScript for Search and Localization -->
-    <script>
-        const translations = {
-            en: {
-                title: "⚙️ Technical Guide Hub",
-                langLabel: "Language:",
-                searchPrompt: "Search technical guides (English, Arabic, or Urdu):",
-                searchPlaceholder: "Type keyword e.g. wave, So creation, ASN creation...",
-                noResults: "No matching technical guides found. Try searching another keyword.",
-                footer: "© 2026 Technical Guide Hub. Free & Open Source."
-            },
-            <!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Guide Library</title>
-    <!-- Tailwind CSS CDN for modern free styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; }
-        body[dir="rtl"] { font-family: 'Cairo', 'Noto Nastaliq Urdu', sans-serif; }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
-
-    <!-- Header & Language Switcher -->
-    <header class="bg-blue-600 text-white shadow-md">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <h1 id="site-title" class="text-2xl font-bold">⚙️ Technical Guide Hub</h1>
-            <div class="flex items-center gap-2">
-                <span id="lang-label" class="text-sm font-medium">Language:</span>
-                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-blue-700 text-white text-sm rounded px-3 py-1.5 border border-blue-500 focus:outline-none">
-                    <option value="en">English</option>
-                    <option value="ar">العربية (Arabic)</option>
-                    <option value="ur">اردو (Urdu)</option>
-                </select>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
-        
-        <!-- Search Section -->
-        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-            <label id="search-prompt" for="searchInput" class="block text-lg font-semibold mb-2 text-slate-700">Search technical guides (English, Arabic, or Urdu):</label>
-            <div class="relative">
-                <input type="text" id="searchInput" oninput="filterGuides()" placeholder="Type keyword e.g. Infor, Soften, إنفور, سوفتهن..." 
-                    class="w-full pl-4 pr-10 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-base">
-                <span class="absolute right-3 top-3.5 text-slate-400">🔍</span>
-            </div>
-        </div>
-
-        <!-- SECTION 1: INFOR -->
-        <div class="mb-10">
-            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
-                <span>📁</span> Infor Guides
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Infor Card 1 -->
-                <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                     data-keywords="infor system guide إنفور نظام">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <!-- Replace the URL below with your own Infor photo link -->
-                        <img src="https://2996fb53-cefd-4a30-af44-57161f7e7997.png/" class="w-full h-full object-cover">
-                        <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Infor Section</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="font-bold text-lg mb-2 text-slate-800">Infor System Walkthrough</h3>
-                        <p class="text-sm text-slate-600 mb-4 flex-grow">Step-by-step visual documentation for navigating and operating Infor workflows.</p>
-                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 2: SOFTEN -->
-        <div class="mb-10">
-            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
-                <span>📁</span> Soften Guides
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Soften Card 1 -->
-                <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                     data-keywords="soften system guide سوفتهن نظام">
-                    <div class="h-48 bg-slate-200 relative overflow-hidden">
-                        <!-- Replace the URL below with your own Soften photo link -->
-                        <img src="https://3abc861f-4cb8-4575-851d-436634ade28d.png" class="w-full h-full object-cover">
-                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Soften Section</span>
-                    </div>
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="font-bold text-lg mb-2 text-slate-800">Soften Operation Overview</h3>
-                        <p class="text-sm text-slate-600 mb-4 flex-grow">Photo and video tutorials detailing Soften configuration and troubleshooting procedures.</p>
-                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- No Results Found State -->
-        <div id="noResults" class="hidden text-center py-12 text-slate-500">
-            <p id="no-results-text" class="text-lg">No matching technical guides found. Try searching another keyword.</p>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-sm text-slate-500">
-        <p id="footer-text">© 2026 Technical Guide Hub. Free & Open Source.</p>
-    </footer>
-
-    <!-- JavaScript for Search and Localization -->
-    <script>
-        const translations = {
-            en: {
-                title: "⚙️ Technical Guide Hub",
-                langLabel: "Language:",
-                searchPrompt: "Search technical guides (English, Arabic, or Urdu):",
-                searchPlaceholder: "Type keyword e.g. wave, So creation, ASN creation...",
-                noResults: "No matching technical guides found. Try searching another keyword.",
-                footer: "© 2026 Technical Guide Hub. Free & Open Source."
-            },
-          ar: {
-                title: "⚙️ دليل السيستم",
-                langLabel: "اللغة:",
-                searchPrompt: "ابحث عن الخطوه المراد توضيحها:",
-                searchPlaceholder: "اكتب كلمة بحث مثل: wave, ASN creation,...",
-                noResults: "لم يتم العثور على المطلوب , جرب اسم اخر للخطوه.",
-                footer: "© 2026 دليل السيستم.."
-            },
-            ur: {
-                title: "⚙️ تکنیکل گائیڈ حب",
-                langLabel: "زبان:",
-                searchPrompt: "تکنیکل گائیڈز تلاش کریں (انگریزی، عربی، یا اردو):",
-                searchPlaceholder: "کی ورڈ ٹائپ کریں مثلاً Infor, Soften, إنفور, سوفتهن...",
-                noResults: "کوئی متعلقہ گائیڈ نہیں ملی۔ کوئی دوسرا کی ورڈ آزمائیں۔",
-                footer: "© 2026 تکنیکل گائیڈ حب۔"
-            }
-        };
-        const translations = {
-    en: {
-        ...
-        footer: "Making your day to day experience easier"
-    },
-    ar: {
-        ...
-        footer: "تجربتك اليومية أكثر سهولة"
-    },
-    ur: {
-        ...
-        footer: "آپ کے روزمرہ کے تجربے کو آسان بنانا"
-    }
+<script>
+/* =====================================================
+   1) EDIT HERE: INTERFACE TEXT (3 languages)
+   ===================================================== */
+const UI = {
+  en:{title:"Tech Guideline", infor:"Infor", softeon:"Softeon", search:"Search",
+      placeholder:"Search guides...", none:"No results found.", soon:"Video coming soon", steps:"Steps"},
+  ar:{title:"دليل الاستخدام", infor:"Infor", softeon:"Softeon", search:"ابحث عن ....",
+      placeholder:"ابحث عن ....", none:"لا توجد نتائج.", soon:"الفيديو قريباً", steps:"الخطوات"},
+  ur:{title:"Tech Guideline", infor:"Infor", softeon:"Softeon", search:"Talash",
+      placeholder:"Guides talash karein...", none:"Koi nateeja nahi mila.", soon:"Video jald aa rahi hai", steps:"Steps"}
 };
 
-        function changeLanguage(lang) {
-            const html = document.documentElement;
-            if (lang === 'ar' || lang === 'ur') {
-                html.setAttribute('dir', 'rtl');
-                html.setAttribute('lang', lang);
-            } else {
-                html.setAttribute('dir', 'ltr');
-                html.setAttribute('lang', 'en');
-            }
+/* =====================================================
+   2) EDIT HERE: GUIDES & VIDEOS
+   To add a new guide: copy one { ... } block and paste it
+   after a comma. Put your video link in "video".
+   - YouTube: use the EMBED link  https://www.youtube.com/embed/VIDEO_ID
+   - Own file: put the .mp4 in the "videos" folder and use "videos/name.mp4"
+   - Leave "" if there is no video yet.
+   ===================================================== */
+const GUIDES = {
+  infor: [
+    {
+      video: "",
+      title: {en:"How to log in to Infor", ar:"كيفية تسجيل الدخول إلى Infor", ur:"Infor mein login kaise karein"},
+      steps: {
+        en:["Open the Infor link.","Type your username and password.","Click Sign In."],
+        ar:["افتح رابط Infor.","اكتب اسم المستخدم وكلمة المرور.","اضغط تسجيل الدخول."],
+        ur:["Infor ka link kholein.","Apna username aur password likhein.","Sign In par click karein."]
+      }
+    }
+  ],
+  softeon: [
+    {
+      video: "",
+      title: {en:"How to create wave picking", ar:"كيفية إنشاء طلب مجمع ", ur:"Wave picking ka tareeqa"},
+      steps: {
+        en:["Open the Orders menu.","Click New Order.","Fill in the details and Save."],
+        ar:["افتح قائمة الطلبات.","اضغط طلب جديد.","املأ البيانات ثم احفظ."],
+        ur:["Orders menu kholein.","New Order par click karein.","Tafseelat bharein aur Save karein."]
+      }
+    }
+  ]
+};
 
-            document.getElementById('site-title').innerText = translations[lang].title;
-            document.getElementById('lang-label').innerText = translations[lang].langLabel;
-            document.getElementById('search-prompt').innerText = translations[lang].searchPrompt;
-            document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
-            document.getElementById('no-results-text').innerText = translations[lang].noResults;
-            document.getElementById('footer-text').innerText = translations[lang].footer;
-        }
+/* =====================================================
+   3) CODE (no need to edit below)
+   ===================================================== */
+let lang = localStorage.getItem("lang") || "en";
+let tab = "infor";
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
 
-        function filterGuides() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.guide-card');
-            let visibleCount = 0;
+function videoHTML(url){
+  if(!url) return `<div class="video empty">▶ ${UI[lang].soon}</div>`;
+  if(/youtube\.com|youtu\.be|vimeo\.com/.test(url))
+    return `<div class="video"><iframe src="${url}" allowfullscreen loading="lazy"></iframe></div>`;
+  return `<div class="video"><video controls preload="metadata" src="${url}"></video></div>`;
+}
+function cardHTML(g, label){
+  return `<div class="card">
+    ${label?`<span class="tag">${label}</span>`:""}
+    <h3>${g.title[lang]}</h3>${videoHTML(g.video)}
+    <strong>${UI[lang].steps}:</strong>
+    <ol>${g.steps[lang].map(s=>`<li>${s}</li>`).join("")}</ol></div>`;
+}
+function render(){
+  document.documentElement.lang = lang === "ur" ? "ur-Latn" : lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.title = UI[lang].title;
+  $("#siteTitle").textContent = UI[lang].title;
+  $$("nav button").forEach(b=>{b.textContent=UI[lang][b.dataset.tab];b.classList.toggle("active",b.dataset.tab===tab)});
+  $$(".langs button").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  $$("section").forEach(s=>s.classList.toggle("active",s.id===tab));
+  ["infor","softeon"].forEach(k=>$("#"+k).innerHTML = GUIDES[k].map(g=>cardHTML(g)).join(""));
+  $("#q").placeholder = UI[lang].placeholder;
+  doSearch();
+}
+function doSearch(){
+  const q = $("#q").value.trim().toLowerCase();
+  if(!q){ $("#results").innerHTML=""; return; }
+  let html = "";
+  for(const k of ["infor","softeon"]){
+    GUIDES[k].forEach(g=>{
+      const hay = (g.title[lang]+" "+g.steps[lang].join(" ")).toLowerCase();
+      if(hay.includes(q)) html += `<div class="result" onclick="go('${k}')">${cardHTML(g, UI[lang][k])}</div>`;
+    });
+  }
+  $("#results").innerHTML = html || `<p>${UI[lang].none}</p>`;
+}
+function go(t){ tab = t; render(); window.scrollTo(0,0); }
 
-            cards.forEach(card => {
-                const keywords = card.getAttribute('data-keywords').toLowerCase();
-                const title = card.querySelector('h3').innerText.toLowerCase();
-                const desc = card.querySelector('p').innerText.toLowerCase();
-
-                if (keywords.includes(query) || title.includes(query) || desc.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            const noResultsDiv = document.getElementById('noResults');
-            if (visibleCount === 0) {
-                noResultsDiv.classList.remove('hidden');
-            } else {
-                noResultsDiv.classList.add('hidden');
-            }
-        }
-    </script>
-</body>
-</html>
-
-        function changeLanguage(lang) {
-            const html = document.documentElement;
-            if (lang === 'ar' || lang === 'ur') {
-                html.setAttribute('dir', 'rtl');
-                html.setAttribute('lang', lang);
-            } else {
-                html.setAttribute('dir', 'ltr');
-                html.setAttribute('lang', 'en');
-            }
-
-            document.getElementById('site-title').innerText = translations[lang].title;
-            document.getElementById('lang-label').innerText = translations[lang].langLabel;
-            document.getElementById('search-prompt').innerText = translations[lang].searchPrompt;
-            document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
-            document.getElementById('no-results-text').innerText = translations[lang].noResults;
-            document.getElementById('footer-text').innerText = translations[lang].footer;
-        }
-
-        function filterGuides() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.guide-card');
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const keywords = card.getAttribute('data-keywords').toLowerCase();
-                const title = card.querySelector('h3').innerText.toLowerCase();
-                const desc = card.querySelector('p').innerText.toLowerCase();
-
-                if (keywords.includes(query) || title.includes(query) || desc.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            const noResultsDiv = document.getElementById('noResults');
-            if (visibleCount === 0) {
-                noResultsDiv.classList.remove('hidden');
-            } else {
-                noResultsDiv.classList.add('hidden');
-            }
-        }
-    </script>
+$$(".langs button").forEach(b=>b.onclick=()=>{lang=b.dataset.lang;localStorage.setItem("lang",lang);render()});
+$$("nav button").forEach(b=>b.onclick=()=>go(b.dataset.tab));
+$("#q").addEventListener("input", doSearch);
+render();
+</script>
 </body>
 </html>
