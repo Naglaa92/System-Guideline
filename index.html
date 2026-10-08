@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Guide Library</title>
+    <!-- Tailwind CSS CDN for modern free styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        body[dir="rtl"] { font-family: 'Cairo', 'Noto Nastaliq Urdu', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header & Language Switcher -->
+    <header class="bg-blue-600 text-white shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 id="site-title" class="text-2xl font-bold">⚙️ Technical Guide Hub</h1>
+            <div class="flex items-center gap-2">
+                <span id="lang-label" class="text-sm font-medium">Language:</span>
+                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-blue-700 text-white text-sm rounded px-3 py-1.5 border border-blue-500 focus:outline-none">
+                    <option value="en">English</option>
+                    <option value="ar">العربية (Arabic)</option>
+                    <option value="ur">اردو (Urdu)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Search Section -->
+        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+            <label id="search-prompt" for="searchInput" class="block text-lg font-semibold mb-2 text-slate-700">Search technical guides (English, Arabic, or Urdu):</label>
+            <div class="relative">
+                <input type="text" id="searchInput" oninput="filterGuides()" placeholder="Type keyword e.g. Motor, محرك, موٹر..." 
+                    class="w-full pl-4 pr-10 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-base">
+                <span class="absolute right-3 top-3.5 text-slate-400">🔍</span>
+            </div>
+        </div>
+
+        <!-- Guides Grid -->
+        <div id="guidesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
+                 data-keywords="motor wiring electrical محرك كهربائي موٹر وائرنگ">
+                <div class="h-48 bg-slate-200 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Motor Wiring" class="w-full h-full object-cover">
+                    <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Photo Guide</span>
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Electrical Motor Wiring</h3>
+                    <p class="text-sm text-slate-600 mb-4 flex-grow">Step-by-step wiring photo breakdown for industrial 3-phase motors.</p>
+                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
+                 data-keywords="valve maintenance pneumatic صمام صيانة والو مینٹیننس">
+                <div class="h-48 bg-slate-900 relative flex items-center justify-center">
+                    <!-- Simulated Video Thumbnail / Embed -->
+                    <div class="text-white text-center">
+                        <div class="text-4xl mb-1">▶️</div>
+                        <span class="text-xs bg-red-600 px-2 py-0.5 rounded">Video Guide</span>
+                    </div>
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Pneumatic Valve Repair</h3>
+                    <p class="text-sm text-slate-600 mb-4 flex-grow">Video demonstration on troubleshooting and replacing seals in pneumatic valves.</p>
+                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">Watch Video →</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
+                 data-keywords="sensor calibration sensor calibration حساس معايرة سینسر کیلیبریشن">
+                <div class="h-48 bg-slate-200 relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Sensor Calibration" class="w-full h-full object-cover">
+                    <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Photo Guide</span>
+                </div>
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="font-bold text-lg mb-2 text-slate-800">Industrial Sensor Calibration</h3>
+                    <p class="text-sm text-slate-600 mb-4 flex-grow">Visual walkthrough for calibrating optical and proximity sensors accurately.</p>
+                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Found State -->
+        <div id="noResults" class="hidden text-center py-12 text-slate-500">
+            <p id="no-results-text" class="text-lg">No matching technical guides found. Try searching another keyword.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-sm text-slate-500">
+        <p id="footer-text">© 2026 Technical Guide Hub. Free & Open Source.</p>
+    </footer>
+
+    <!-- JavaScript for Search and Localization -->
+    <script>
+        const translations = {
+            en: {
+                title: "⚙️ Technical Guide Hub",
+                langLabel: "Language:",
+                searchPrompt: "Search technical guides (English, Arabic, or Urdu):",
+                searchPlaceholder: "Type keyword e.g. Motor, محرك, موٹر...",
+                noResults: "No matching technical guides found. Try searching another keyword.",
+                footer: "© 2026 Technical Guide Hub. Free & Open Source."
+            },
+            ar: {
+                title: "⚙️ مركز الدليل الفني",
+                langLabel: "اللغة:",
+                searchPrompt: "ابحث في الأدلة الفنية (بالإنجليزية، العربية، أو الأوردو):",
+                searchPlaceholder: "اكتب كلمة مفتاحية مثل: Motor, محرك, موٹر...",
+                noResults: "لم يتم العثور على أدلة مطابقة. جرب كلمة بحث أخرى.",
+                footer: "© 2026 مركز الدليل الفني. مجاني ومفتوح المصدر."
+            },
+            ur: {
+                title: "⚙️ تکنیکل گائیڈ حب",
+                langLabel: "زبان:",
+                searchPrompt: "تکنیکل گائیڈز تلاش کریں (انگریزی، عربی، یا اردو):",
+                searchPlaceholder: "کی ورڈ ٹائپ کریں مثلاً Motor, محرك, موٹر...",
+                noResults: "کوئی متعلقہ گائیڈ نہیں ملی۔ کوئی دوسرا کی ورڈ آزمائیں۔",
+                footer: "© 2026 تکنیکل گائیڈ حب۔ مفت اور اوپن سورس۔"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const html = document.documentElement;
+            if (lang === 'ar' || lang === 'ur') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', lang);
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', 'en');
+            }
+
+            // Update UI text
+            document.getElementById('site-title').innerText = translations[lang].title;
+            document.getElementById('lang-label').innerText = translations[lang].langLabel;
+            document.getElementById('search-prompt').innerText = translations[lang].searchPrompt;
+            document.getElementById('searchInput').placeholder = translations[lang].searchPlaceholder;
+            document.getElementById('no-results-text').innerText = translations[lang].noResults;
+            document.getElementById('footer-text').innerText = translations[lang].footer;
+        }
+
+        function filterGuides() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.guide-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const keywords = card.getAttribute('data-keywords').toLowerCase();
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                const desc = card.querySelector('p').innerText.toLowerCase();
+
+                if (keywords.includes(query) || title.includes(query) || desc.includes(query)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResultsDiv = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResultsDiv.classList.remove('hidden');
+            } else {
+                noResultsDiv.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
