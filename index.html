@@ -37,56 +37,54 @@
         <div class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-slate-200">
             <label id="search-prompt" for="searchInput" class="block text-lg font-semibold mb-2 text-slate-700">Search technical guides (English, Arabic, or Urdu):</label>
             <div class="relative">
-                <input type="text" id="searchInput" oninput="filterGuides()" placeholder="Type keyword e.g. Motor, محرك, موٹر..." 
+                <input type="text" id="searchInput" oninput="filterGuides()" placeholder="Type keyword e.g. Infor, Soften, إنفور, سوفتهن..." 
                     class="w-full pl-4 pr-10 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-base">
                 <span class="absolute right-3 top-3.5 text-slate-400">🔍</span>
             </div>
         </div>
 
-        <!-- Guides Grid -->
-        <div id="guidesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Card 1 -->
-            <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                 data-keywords="motor wiring electrical محرك كهربائي موٹر وائرنگ">
-                <div class="h-48 bg-slate-200 relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Motor Wiring" class="w-full h-full object-cover">
-                    <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Photo Guide</span>
-                </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="font-bold text-lg mb-2 text-slate-800">Electrical Motor Wiring</h3>
-                    <p class="text-sm text-slate-600 mb-4 flex-grow">Step-by-step wiring photo breakdown for industrial 3-phase motors.</p>
-                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                 data-keywords="valve maintenance pneumatic صمام صيانة والو مینٹیننس">
-                <div class="h-48 bg-slate-900 relative flex items-center justify-center">
-                    <!-- Simulated Video Thumbnail / Embed -->
-                    <div class="text-white text-center">
-                        <div class="text-4xl mb-1">▶️</div>
-                        <span class="text-xs bg-red-600 px-2 py-0.5 rounded">Video Guide</span>
+        <!-- SECTION 1: INFOR -->
+        <div class="mb-10">
+            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
+                <span>📁</span> Infor Guides
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Infor Card 1 -->
+                <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
+                     data-keywords="infor system guide إنفور نظام">
+                    <div class="h-48 bg-slate-200 relative overflow-hidden">
+                        <!-- Replace the URL below with your own Infor photo link -->
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Infor Guide" class="w-full h-full object-cover">
+                        <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Infor Section</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-bold text-lg mb-2 text-slate-800">Infor System Walkthrough</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-grow">Step-by-step visual documentation for navigating and operating Infor workflows.</p>
+                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
                     </div>
                 </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="font-bold text-lg mb-2 text-slate-800">Pneumatic Valve Repair</h3>
-                    <p class="text-sm text-slate-600 mb-4 flex-grow">Video demonstration on troubleshooting and replacing seals in pneumatic valves.</p>
-                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">Watch Video →</a>
-                </div>
             </div>
+        </div>
 
-            <!-- Card 3 -->
-            <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
-                 data-keywords="sensor calibration sensor calibration حساس معايرة سینسر کیلیبریشن">
-                <div class="h-48 bg-slate-200 relative overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" alt="Sensor Calibration" class="w-full h-full object-cover">
-                    <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Photo Guide</span>
-                </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <h3 class="font-bold text-lg mb-2 text-slate-800">Industrial Sensor Calibration</h3>
-                    <p class="text-sm text-slate-600 mb-4 flex-grow">Visual walkthrough for calibrating optical and proximity sensors accurately.</p>
-                    <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
+        <!-- SECTION 2: SOFTEN -->
+        <div class="mb-10">
+            <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
+                <span>📁</span> Soften Guides
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Soften Card 1 -->
+                <div class="guide-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col" 
+                     data-keywords="soften system guide سوفتهن نظام">
+                    <div class="h-48 bg-slate-200 relative overflow-hidden">
+                        <!-- Replace the URL below with your own Soften photo link -->
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Soften Guide" class="w-full h-full object-cover">
+                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-xs px-2.5 py-1 rounded-full font-medium">Soften Section</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-bold text-lg mb-2 text-slate-800">Soften Operation Overview</h3>
+                        <p class="text-sm text-slate-600 mb-4 flex-grow">Photo and video tutorials detailing Soften configuration and troubleshooting procedures.</p>
+                        <a href="#" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Guide →</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,7 +107,7 @@
                 title: "⚙️ Technical Guide Hub",
                 langLabel: "Language:",
                 searchPrompt: "Search technical guides (English, Arabic, or Urdu):",
-                searchPlaceholder: "Type keyword e.g. Motor, محرك, موٹر...",
+                searchPlaceholder: "Type keyword e.g. Infor, Soften, إنفور, سوفتهن...",
                 noResults: "No matching technical guides found. Try searching another keyword.",
                 footer: "© 2026 Technical Guide Hub. Free & Open Source."
             },
@@ -117,7 +115,7 @@
                 title: "⚙️ مركز الدليل الفني",
                 langLabel: "اللغة:",
                 searchPrompt: "ابحث في الأدلة الفنية (بالإنجليزية، العربية، أو الأوردو):",
-                searchPlaceholder: "اكتب كلمة مفتاحية مثل: Motor, محرك, موٹر...",
+                searchPlaceholder: "اكتب كلمة مفتاحية مثل: Infor, Soften, إنفور, سوفتهن...",
                 noResults: "لم يتم العثور على أدلة مطابقة. جرب كلمة بحث أخرى.",
                 footer: "© 2026 مركز الدليل الفني. مجاني ومفتوح المصدر."
             },
@@ -125,7 +123,7 @@
                 title: "⚙️ تکنیکل گائیڈ حب",
                 langLabel: "زبان:",
                 searchPrompt: "تکنیکل گائیڈز تلاش کریں (انگریزی، عربی، یا اردو):",
-                searchPlaceholder: "کی ورڈ ٹائپ کریں مثلاً Motor, محرك, موٹر...",
+                searchPlaceholder: "کی ورڈ ٹائپ کریں مثلاً Infor, Soften, إنفور, سوفتهن...",
                 noResults: "کوئی متعلقہ گائیڈ نہیں ملی۔ کوئی دوسرا کی ورڈ آزمائیں۔",
                 footer: "© 2026 تکنیکل گائیڈ حب۔ مفت اور اوپن سورس۔"
             }
@@ -141,7 +139,6 @@
                 html.setAttribute('lang', 'en');
             }
 
-            // Update UI text
             document.getElementById('site-title').innerText = translations[lang].title;
             document.getElementById('lang-label').innerText = translations[lang].langLabel;
             document.getElementById('search-prompt').innerText = translations[lang].searchPrompt;
